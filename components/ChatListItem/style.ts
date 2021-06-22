@@ -10,11 +10,15 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: 'row',
         width:'100%',
-        justifyContent:'space-between'
+        justifyContent:'flex-start',
+        
     },
     midContainer:{
         flexDirection:'column',
-        justifyContent:'space-around'
+        justifyContent:'space-around',
+        flexGrow:1,
+        flexShrink:1,
+        flexBasis:'auto'
     },
     topRightContainer:{
         flexDirection:'row',

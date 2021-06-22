@@ -17,9 +17,9 @@ const ChatListItem = (props:ChatListItemProp) => {
             <View style={styles.midContainer}>
                 <View style={styles.topRightContainer}>
                     <Text style={styles.userName}>{user.name}</Text>
-                    <Text style={styles.time} >{chatRoom.lastMessage.createdAt}</Text>
+                    <Text style={styles.time} >{moment(chatRoom.lastMessage.createdAt).format('DD/MM/YYYY')}</Text>
                 </View>
-                <Text style={styles.lastMessage} numberOfLines={1} ellipsizeMode={"tail"}>{moment(chatRoom.lastMessage.content).format('DD/MM/YYYY')}</Text>
+                <Text style={styles.lastMessage} numberOfLines={1} ellipsizeMode={"tail"}>{chatRoom.lastMessage.content}</Text>
             </View>
         </View>
     )
