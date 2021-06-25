@@ -33,12 +33,12 @@ export interface ChatRoom{
 export interface User{
   id:string;
   name:string;
-    imageUri:string;
+  imageUri?:string;
 }
 
 export interface Message{
   id:string;
   content:string;
   createdAt:string;
-  from?:User;
+  user?:User;
 }
