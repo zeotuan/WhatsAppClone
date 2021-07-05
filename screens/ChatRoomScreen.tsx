@@ -3,6 +3,7 @@ import {View, FlatList, ImageBackground} from 'react-native'
 import {useRoute} from '@react-navigation/native';
 import ChatMessage from '../components/ChatMessage';
 import ChatRoomsData from '../data/Chats';
+// @ts-ignore
 import imgBG from '../assets/images/splash.png';
 import InputBox from '../components/InputBox';
 const ChatRoomScreen  = () => {
