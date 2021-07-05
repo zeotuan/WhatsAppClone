@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "whatsappclinec76dc488": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
