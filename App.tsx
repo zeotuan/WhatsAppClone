@@ -15,7 +15,12 @@ import { withAuthenticator } from 'aws-amplify-react-native';
 import {getUser} from './src/graphql/queries';
 import {createUser} from './src/graphql/mutations';
 
-Amplify.configure(config)
+Amplify.configure({
+  ...config,
+  Analytics: { 
+    disabled: true
+  }
+});
 
 const randomImages = [
   'https://hieumobile.com/wp-content/uploads/avatar-among-us-2.jpg',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { View,Text, Image, TouchableWithoutFeedback} from 'react-native';
 import {ChatRoom} from '../../types';
 import styles from './style';
@@ -57,4 +57,4 @@ const ChatListItem = (props:ChatListItemProp) => {
     )
 }
 
-export default ChatListItem
+export default ChatListItem;
