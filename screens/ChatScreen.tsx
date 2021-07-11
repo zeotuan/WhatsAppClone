@@ -25,9 +25,9 @@ export default function ChatScreen() {
           )
         )
         // @ts-ignore
-        setChatRooms(userData.data.getUser.chatRoomUser.items)
+        setChatRooms(userData.data.getUser.chatRoomUser.items);
       } catch (error) {
-        
+        console.log(error);
       }
       
     }

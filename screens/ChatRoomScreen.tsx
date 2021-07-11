@@ -8,6 +8,7 @@ import imgBG from '../assets/images/splash.png';
 import InputBox from '../components/InputBox';
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { messagesByChatRoom } from '../src/graphql/queries';
+import { onCreateMessage } from '../src/graphql/subscriptions';
 
 const ChatRoomScreen  = () => {
     const route = useRoute();
@@ -15,16 +16,22 @@ const ChatRoomScreen  = () => {
     const [myId, setMyId] = useState('');
     useEffect(() => {
         const fetchMessages =  async () => {
-            const messagesData = await API.graphql(
-                graphqlOperation(
-                    messagesByChatRoom,
-                    {
-                        // @ts-ignore
-                        chatRoomID:route.params.id,
-                        sortDirection: "DESC"
-                    }
+            try {
+                const messagesData = await API.graphql(
+                    graphqlOperation(
+                        messagesByChatRoom,
+                        {
+                            // @ts-ignore
+                            chatRoomID:route.params.id,
+                            sortDirection: "DESC"
+                        }
+                    )
                 )
-            )
+                setMessages(messagesData.data.messagesByChatRoom.items);    
+            } catch (error) {
+                console.log(error);
+            }
+            
             
         }
         fetchMessages();
@@ -39,6 +46,26 @@ const ChatRoomScreen  = () => {
         } 
         getMyId();
 
+    },[])
+
+
+
+    useEffect(() => {
+        const subscription = API.graphql(
+            graphqlOperation(
+                onCreateMessage
+            )
+        ).subscribe({
+            next:(data) => {
+                const newMessage = data.value.data.onCreateMessage;
+                if(newMessage.chatRoomID !== route.params.id){
+                    return;
+                } 
+                setMessages([newMessage,...messages]);
+            }
+        })
+        
+        return () => subscription.unsubscribe();
     },[])
 
     return (

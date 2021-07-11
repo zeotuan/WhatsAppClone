@@ -15,7 +15,6 @@ const ChatListItem = (props:ChatListItemProp) => {
     const {chatRoom} = props;
     const [otherUser, setOtherUser] = useState();
     //assuming that chat room is alway with 1 other people that is not yourself
-
     const navigation = useNavigation();
     
     useEffect(() => {
@@ -50,7 +49,17 @@ const ChatListItem = (props:ChatListItemProp) => {
                         <Text style={styles.userName}>{otherUser.name}</Text>
                         <Text style={styles.time} >{moment(chatRoom.lastMessage && chatRoom.lastMessage.createdAt).format('DD/MM/YYYY')}</Text>
                     </View>
-                    <Text style={styles.lastMessage} numberOfLines={1} ellipsizeMode={"tail"}>{chatRoom.lastMessage? chatRoom.lastMessage.content: "" }</Text>
+                    <Text 
+                        style={styles.lastMessage} 
+                        numberOfLines={1} 
+                        ellipsizeMode={"tail"}
+                    >
+                        {
+                            chatRoom.lastMessage
+                            ?`${chatRoom.lastMessage.user?.name} - ${chatRoom.lastMessage.content}`
+                            :""
+                        }
+                    </Text>
                 </View>
             </View>
         </TouchableWithoutFeedback>

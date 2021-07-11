@@ -21,15 +21,18 @@ const ContactListItem = (props:ContactListItemProp) => {
                 graphqlOperation(
                     createChatRoom,
                     {
-                        input:{}
+                        input:{
+                        }
                     }
                 )
             )
+            // @ts-ignore
             if(!newChatRoomData.data){
                 console.warn("failed  to create the chat room");
                 return;
             }
 
+            // @ts-ignore
             const newChatRoom = newChatRoomData.data.createChatRoom;
             // add authenticated user to the chat room
             const userInfo = await Auth.currentAuthenticatedUser();
