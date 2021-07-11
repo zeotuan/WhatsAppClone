@@ -14,26 +14,28 @@ const ChatRoomScreen  = () => {
     const route = useRoute();
     const [messages, setMessages] = useState([]);
     const [myId, setMyId] = useState('');
-    useEffect(() => {
-        const fetchMessages =  async () => {
-            try {
-                const messagesData = await API.graphql(
-                    graphqlOperation(
-                        messagesByChatRoom,
-                        {
-                            // @ts-ignore
-                            chatRoomID:route.params.id,
-                            sortDirection: "DESC"
-                        }
-                    )
+
+    const fetchMessages =  async () => {
+        try {
+            const messagesData = await API.graphql(
+                graphqlOperation(
+                    messagesByChatRoom,
+                    {
+                        // @ts-ignore
+                        chatRoomID:route.params.id,
+                        sortDirection: "DESC"
+                    }
                 )
-                setMessages(messagesData.data.messagesByChatRoom.items);    
-            } catch (error) {
-                console.log(error);
-            }
-            
-            
+            )
+            setMessages(messagesData.data.messagesByChatRoom.items);    
+        } catch (error) {
+            console.log(error);
         }
+        
+        
+    }
+
+    useEffect(() => {    
         fetchMessages();
     },[])
 
@@ -62,6 +64,10 @@ const ChatRoomScreen  = () => {
                     return;
                 } 
                 setMessages([newMessage,...messages]);
+
+                //temporary fix for message not showing correctly  - not efficient 
+                fetchMessages();
+                
             }
         })
         
