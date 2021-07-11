@@ -1,5 +1,5 @@
 import React,{ useEffect,useState } from 'react'
-import {View, FlatList, ImageBackground} from 'react-native'
+import {View, FlatList, ImageBackground, KeyboardAvoidingView} from 'react-native'
 import {useRoute} from '@react-navigation/native';
 import ChatMessage from '../components/ChatMessage';
 //mport ChatRoomsData from '../data/Chats';

@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons, FontAwesome5, Entypo, Fontisto, MaterialIcons } from '@expo/vector-icons';
 import React,{useState} from 'react';
-import {View, TextInput, TouchableOpacity } from 'react-native';
+import {View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform} from 'react-native';
 import styles from './style';
 import {API, graphqlOperation, Auth} from 'aws-amplify';
 import { createMessage, updateChatRoom} from '../../src/graphql/mutations';
@@ -73,7 +73,12 @@ const InputBox = (props) => {
         }
     }
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios"? "padding": "height"}
+            style={styles.container}
+            keyboardVerticalOffset={100}
+        >
+        
             <View style={styles.mainContainer}>
                 <FontAwesome5 name='laugh-beam' size={24} color='grey' style={styles.icon}/>
                 <TextInput 
@@ -95,7 +100,7 @@ const InputBox = (props) => {
                     }  
                 </View>
             </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 

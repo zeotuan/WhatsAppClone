@@ -56,7 +56,7 @@ const ChatListItem = (props:ChatListItemProp) => {
                     >
                         {
                             chatRoom.lastMessage
-                            ?`${chatRoom.lastMessage.user?.name} - ${chatRoom.lastMessage.content}`
+                            ?`${chatRoom.lastMessage.user?.name}: ${chatRoom.lastMessage.content}`
                             :""
                         }
                     </Text>
